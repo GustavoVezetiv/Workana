@@ -56,6 +56,7 @@ class RegisterLocation(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     dt_start = models.DateTimeField('Inicio')
     dt_end = models.DateTimeField('Fim')
+    """ SETA AUTOMATICO A DATA SELECIONADA ACIMA, com o datetime """
     create_at = models.DateField(default=datetime.now, blank=True)
     
     def __str__(self):
