@@ -1,9 +1,129 @@
-/tmp
-.venv 
-/static_media
-static_media 
-static_files 
-/static_files  
-__pycache__ 
+# ---- ARQUIVOS E DIRETÓRIOS DO PRÓPRIO PYTHON ----
 __pycache__/
-/__pycache__/
+*.py[cod]
+*.so
+*.pyo
+*.pyd
+*.py,cover
+
+# ---- AMBIENTES VIRTUAIS ----
+venv/
+.env/
+env/
+*.venv
+*.env
+
+# ---- CONFIGURAÇÕES DE IDEs/EDITORES ----
+.vscode/
+.idea/
+*.iml
+
+# ---- LOGS, CACHE E ARQUIVOS TEMPORÁRIOS ----
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.DS_Store
+*.rej
+*.orig
+Thumbs.db
+
+# ---- DEPENDÊNCIAS E GERENCIADORES DE PACOTES ----
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile
+Pipfile.lock
+requirements.txt
+
+# ---- JUPYTER NOTEBOOK ----
+.ipynb_checkpoints/
+
+# ---- TESTES E COBERTURA DE CÓDIGO ----
+.tox/
+.nox/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# ---- BUILD E DISTRIBUIÇÃO ----
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# ---- DOCKER ----
+*.pid
+
+# ---- ARQUIVOS DE BANCO DE DADOS ----
+*.sqlite3
+*.db
+*.sqlite
+
+# ---- CONFIGURAÇÕES E SEGURANÇA ----
+config.yaml
+config.json
+secrets.json
+.envrc
+*.pem
+*.crt
+*.key
+*.pfx
+*.cert
+
+# ---- DJANGO ESPECÍFICO ----
+**/settings.py
+**/settings/*.py
+migrations/
+staticfiles/
+media/
+
+# =====================================
+# CONFIGURAÇÃO PARA FRONTEND
+# =====================================
+
+# ---- NODE.JS & NPM/YARN/Pnpm ----
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ---- REACT & NEXT.JS ----
+.next/
+out/
+
+# ---- TYPESCRIPT ----
+*.tsbuildinfo
+
+# ---- CSS/Tailwind ----
+*.css.map
+*.scssc
+*.sassc
+*.lessc
+.postcss-cache/
+
+# ---- BUNDLERS E BUILD ----
+public/
+dist/
+.cache/
+.nyc_output/
+coverage/
+webpack-stats.json
+.vite/
+
+# ---- TESTES E FERRAMENTAS DE FRONTEND ----
+jest/
+cypress/screenshots/
+cypress/videos/
+
+# ---- ARQUIVOS GERADOS EM HTML ----
+*.min.js
+*.min.css
+*.map
+*.gzip
+*.br
