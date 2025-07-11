@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, Immobile, RegisterLocation
+from .models import Client, Contract, Employee, Immobile, MaintenanceRequest, Owner, Payment, RegisterLocation, VisitSchedule
 
 # Doc: https://docs.djangoproject.com/en/5.1/topics/http/file-uploads/
 
@@ -64,3 +64,89 @@ class RegisterLocationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)  
         for field_name, field in self.fields.items():   
               field.widget.attrs['class'] = 'form-control'
+
+class ContractForm(forms.ModelForm):
+    class Meta:
+        model = Contract
+        fields = '__all__'
+        widgets = {
+            'signed_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+#Pagamento
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+        widgets = {
+            'payment_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+#Funcionario
+class EmployeeForm(forms.ModelForm):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+#VISITAS
+class VisitScheduleForm(forms.ModelForm):
+    class Meta:
+        model = VisitSchedule
+        fields = '__all__'
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+#Manutenção
+class MaintenanceRequestForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceRequest
+        fields = '__all__'
+        widgets = {
+            'request_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+#Proprietario
+class OwnerForm(forms.ModelForm):
+    class Meta:
+        model = Owner
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+
+
+
+
+

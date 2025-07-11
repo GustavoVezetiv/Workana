@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Agendamentos de Visitas{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Agendamentos</h2>
+    <a href="{% url 'visit-create' %}" class="btn btn-success mb-3">Nova Visita</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Imóvel</th>
+                <th>Funcionário</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visit in visits %}
+            <tr>
+                <td>{{ visit.client.name }}</td>
+                <td>{{ visit.immobile.code }}</td>
+                <td>{{ visit.employee.name }}</td>
+                <td>{{ visit.date|date:"d/m/Y H:i" }}</td>
+                <td>{{ visit.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'visit-update' visit.id %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'visit-delete' visit.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

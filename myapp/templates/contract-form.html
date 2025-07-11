@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Cadastrar Contrato{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Cadastrar Contrato</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+</div>
+{% endblock %}

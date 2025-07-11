@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Pagamentos{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Pagamentos de Aluguéis</h2>
+    <a href="{% url 'payment-create' %}" class="btn btn-success mb-3">Novo Pagamento</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Locação</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Método</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.register_location }}</td>
+                <td>R$ {{ payment.amount }}</td>
+                <td>{{ payment.payment_date }}</td>
+                <td>{{ payment.get_method_display }}</td>
+                <td>
+                    <a href="{% url 'payment-update' payment.id %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'payment-delete' payment.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

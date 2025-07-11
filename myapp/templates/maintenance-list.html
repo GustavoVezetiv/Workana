@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Manutenções{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Solicitações de Manutenção</h2>
+    <a href="{% url 'maintenance-create' %}" class="btn btn-success mb-3">Nova Solicitação</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Imóvel</th>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in maintenances %}
+            <tr>
+                <td>{{ m.register_location.immobile.code }}</td>
+                <td>{{ m.register_location.client.name }}</td>
+                <td>{{ m.request_date|date:"d/m/Y" }}</td>
+                <td>{{ m.get_status_display }}</td>
+                <td>{{ m.description }}</td>
+                <td>
+                    <a href="{% url 'maintenance-update' m.id %}" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="{% url 'maintenance-delete' m.id %}" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

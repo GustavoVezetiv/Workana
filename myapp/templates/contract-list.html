@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Contratos{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Contratos de Aluguel</h2>
+    <a href="{% url 'contract-create' %}" class="btn btn-success mb-3">Novo Contrato</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Locação</th>
+                <th>Data de Assinatura</th>
+                <th>Documento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contract in contracts %}
+            <tr>
+                <td>{{ contract.register_location }}</td>
+                <td>{{ contract.signed_date }}</td>
+                <td><a href="{{ contract.document.url }}" target="_blank">Ver Documento</a></td>
+                <td>
+                    <a href="{% url 'contract-update' contract.id %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'contract-delete' contract.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
