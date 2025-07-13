@@ -31,6 +31,8 @@ class Immobile(models.Model):
     address = models.TextField()
     price = models.DecimalField(max_digits=10,decimal_places=2)
     is_locate = models.BooleanField(default=False)
+    owner = models.ForeignKey('Owner', on_delete=models.SET_NULL, null=True, blank=True, related_name='immobiles')
+
 
     def __str__(self):
         return "{} - {}".format(self.code, self.type_item)
@@ -39,6 +41,8 @@ class Immobile(models.Model):
         verbose_name = 'Imóvel'
         verbose_name_plural = 'Imóveis'
         ordering = ['-id']
+
+        
 
 
 ## Cadastrar as Imagens do Imóvel
@@ -58,6 +62,7 @@ class RegisterLocation(models.Model):
     dt_end = models.DateTimeField('Fim')
     """ SETA AUTOMATICO A DATA SELECIONADA ACIMA, com o datetime """
     create_at = models.DateField(default=datetime.now, blank=True)
+    
     
     def __str__(self):
         return "{} - {}".format(self.client, self.immobile)

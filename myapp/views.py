@@ -3,24 +3,106 @@ from django.db.models import Q
 from .forms import ClientForm, ContractForm, EmployeeForm, ImmobileForm, MaintenanceRequestForm, OwnerForm, PaymentForm, RegisterLocationForm, VisitScheduleForm
 from .models import Contract, Employee, Immobile, ImmobileImage, MaintenanceRequest, Owner, Payment, VisitSchedule
 from .models import Contract  # Verifique se isso está no topo do seu arquivo de views
+from django.shortcuts import get_object_or_404
+from .models import Client
+from django.urls import reverse
+from django.contrib import messages
+from .models import RegisterLocation
+from django.shortcuts import redirect
 
+from .models import RegisterLocation
 
-
-# Create your views here.
 def list_location(request):
     immobiles = Immobile.objects.filter(is_locate=False)
     context = {'immobiles': immobiles}
     return render(request, 'list-location.html', context)
 
+def delete_register_location(request, id):
+    loc = get_object_or_404(RegisterLocation, id=id)
+    
+    # Libera o imóvel (seta como não locado)
+    immobile = loc.immobile
+    immobile.is_locate = False
+    immobile.save()
+    
+    # Exclui a locação
+    loc.delete()
 
-def form_client(request):
-    form = ClientForm()
+    messages.success(request, 'Registro de locação excluído com sucesso e imóvel liberado.')
+    return redirect('reports')
+
+
+def location_report(request):
+    owners = Owner.objects.all()
+    selected_owner_id = request.GET.get('owner')
+
+    if selected_owner_id:
+        locations = RegisterLocation.objects.filter(
+            immobile__owner__id=selected_owner_id
+        )
+    else:
+        locations = RegisterLocation.objects.all()
+
+    context = {
+        'locations': locations,
+        'owners': owners,
+        'selected_owner_id': int(selected_owner_id) if selected_owner_id else None,
+        'owners': Owner.objects.all(),
+
+    }
+    return render(request, 'location_report.html', context)
+
+def reports_view(request):
+    owner_id = request.GET.get('owner')
+    immobiles = Immobile.objects.prefetch_related('reg_location')
+
+    if owner_id:
+        immobiles = immobiles.filter(owner_id=owner_id)
+
+    # Outros filtros existentes...
+
+    context = {
+        'immobiles': immobiles,
+        'owners': Owner.objects.all(),  # <- Adiciona os proprietários
+    }
+    return render(request, 'reports.html', context)
+
+
+def client_create(request):
+    form = ClientForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('client-list')
+    return render(request, 'form-client.html', {
+        'form': form,
+        'form_action': reverse('client-create')
+    })
+
+
+def client_list(request):
+    clients = Client.objects.all()
+    return render(request, 'client_list.html', {'clients': clients})
+
+def client_update(request, id):
+    client = get_object_or_404(Client, id=id)
+    form = ClientForm(request.POST or None, instance=client)
+    if form.is_valid():
+        form.save()
+        return redirect('client-list')
+    return render(request, 'form-client.html', {
+        'form': form,
+        'form_action': reverse('client-update', args=[id])
+    })
+
+
+
+
+def client_delete(request, id):
+    client = get_object_or_404(Client, id=id)
     if request.method == 'POST':
-        form = ClientForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('list-location')   
-    return render(request, 'form-client.html', {'form': form})
+        client.delete()
+        return redirect('client-list')
+    return render(request, 'client_confirm_delete.html', {'client': client})
 
 
 def form_immobile(request):
@@ -37,6 +119,8 @@ def form_immobile(request):
                         image=f)
             return redirect('list-location')   
     return render(request, 'form-immobile.html', {'form': form})
+
+
 
 
 def form_location(request, id):
@@ -58,35 +142,90 @@ def form_location(request, id):
     context = {'form': form, 'location': get_locate}
     return render(request, 'form-location.html', context)
 
+    context = {'form': form, 'location': get_locate}
+    return render(request, 'form-location.html', context)
+
+def edit_immobile(request, id):
+    immobile = get_object_or_404(Immobile, id=id)
+    form = ImmobileForm(instance=immobile)  # carrega os dados no form
+
+    if request.method == 'POST':
+        form = ImmobileForm(request.POST, request.FILES, instance=immobile)  # edita em vez de criar novo
+        if form.is_valid():
+            form.save()
+            return redirect('list-location')
+
+    return render(request, 'form-immobile.html', {'form': form})
+    
+
+
+def edit_immobile(request, id):
+    immobile = get_object_or_404(Immobile, id=id)
+    form = ImmobileForm(request.POST or None, request.FILES or None, instance=immobile)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+
+            files = request.FILES.getlist('immobile')
+            if files:
+                # (opcional) Apaga imagens antigas
+                immobile.immobile_images.all().delete()
+
+                # Cria novas imagens
+                for f in files:
+                    ImmobileImage.objects.create(immobile=immobile, image=f)
+
+            return redirect('list-location')
+
+    return render(request, 'edit-immobile.html', {'form': form, 'immobile': immobile})
+
+
+def delete_immobile(request, id):
+    immobile = Immobile.objects.get(id=id)
+    if request.method == 'POST':
+        immobile.delete()
+        return redirect('list-location')
+    return render(request, 'confirm_delete.html', {'object': immobile})
+
+
+
 
 ## Relatório
-def reports(request): ## Relatórios   
+def reports(request):   
     immobile = Immobile.objects.all()
     
     get_client = request.GET.get('client') 
     get_locate = request.GET.get('is_locate')
     get_type_item = request.GET.get('type_item') 
-
     get_dt_start = request.GET.get('dt_start')
     get_dt_end = request.GET.get('dt_end')
-    print(get_dt_start, get_dt_end)
+    get_owner = request.GET.get('owner')  # <-- Filtro por proprietário
 
-    if get_client: ## Filtra por nome e email do cliente
-        immobile = Immobile.objects.filter(
-					Q(reg_location__client__name__icontains=get_client) | 
-					Q(reg_location__client__email__icontains=get_client))
+    if get_client:
+        immobile = immobile.filter(
+            Q(reg_location__client__name__icontains=get_client) |
+            Q(reg_location__client__email__icontains=get_client)
+        )
     
-    if get_dt_start and get_dt_end: ## Por data
-        immobile = Immobile.objects.filter(
-						reg_location__create_at__range=[get_dt_start,get_dt_end])
+    if get_dt_start and get_dt_end:
+        immobile = immobile.filter(
+            reg_location__create_at__range=[get_dt_start, get_dt_end]
+        )
 
     if get_locate:
-        immobile = Immobile.objects.filter(is_locate=get_locate)
+        immobile = immobile.filter(is_locate=get_locate)
 
     if get_type_item:
-        immobile = Immobile.objects.filter(type_item=get_type_item)
+        immobile = immobile.filter(type_item=get_type_item)
 
-    return render(request, 'reports.html', {'immobiles':immobile})
+    if get_owner:
+        immobile = immobile.filter(owner_id=get_owner)  # <-- Filtro aplicado aqui
+
+    return render(request, 'reports.html', {
+        'immobiles': immobile,
+        'owners': Owner.objects.all(),  # <-- Adicionado aqui
+    })
 
 
 # Contratos

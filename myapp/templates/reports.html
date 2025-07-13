@@ -20,6 +20,22 @@
             </form>
         </div>
 
+        <!-- Filtro de proprietário -->
+        <div class="col-md-3">
+            <label for="ownerFilter" class="form-label">Proprietário</label>
+            <form action="{% url 'reports' %}">
+                <select name="owner" id="ownerFilter" class="form-select" onchange="this.form.submit()">
+                    <option value="">Todos</option>
+                    {% for owner in owners %}
+                        <option value="{{ owner.id }}" {% if request.GET.owner == owner.id|stringformat:"s" %}selected{% endif %}>
+                            {{ owner.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+
         <!-- Filtro de data -->
         <div class="col-md-4">
             <label class="form-label">Intervalo de Datas</label>
@@ -107,6 +123,17 @@
                     <td>{{ immobile.code }}</td>
                     <td>{{ immobile.type_item }}</td>
                     <td>R$ {{ immobile.price }}</td>
+                    <td>
+                        {% for location in immobile.reg_location.all %}
+                            <form action="{% url 'delete-location' location.id %}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir esta locação?');">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </td>
+
                     <td>
                         {% if immobile.is_locate %}
                             <i class="fas fa-check-circle text-success fa-2x"></i>

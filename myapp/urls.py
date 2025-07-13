@@ -4,13 +4,34 @@ from myapp import views
 urlpatterns = [
     path('', views.list_location, name='list-location'), 
 
-    path('form-client/', views.form_client, name='client-create'),  
+    path('form-client/', views.client_create, name='client-create'),
 
     path('form-immobile/', views.form_immobile, name='immobile-create'),  
 
     path('form-location/<int:id>/', views.form_location, name='location-create'), 
 
     path('reports/', views.reports, name='reports'),
+
+    path('reports/delete/<int:id>/', views.delete_register_location, name='delete-location'),
+
+
+
+
+    path('clients/', views.client_list, name='client-list'),
+
+    path('clients/edit/<int:id>/', views.client_update, name='client-update'),
+
+    path('clients/delete/<int:id>/', views.client_delete, name='client-delete'),
+
+
+
+
+    path('form-immobile/edit/<int:id>/', views.edit_immobile, name='immobile-edit'),
+
+
+    path('form-immobile/<int:id>/', views.edit_immobile, name='immobile-edit'),
+
+    path('delete-immobile/<int:id>/', views.delete_immobile, name='immobile-delete'),
 
 
     # Contratos

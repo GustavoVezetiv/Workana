@@ -1,47 +1,63 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'list-location' %}">Workana</a>
 
-    <div class="container">
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" href="#">MyApp</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto">
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
-            <ul class="navbar-nav gap-3 mb-2 mb-lg-0 mx-auto">
-
+                <!-- Início -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'list-location' %}">Início</a>
                 </li>
 
+                <!-- Relatório -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'reports' %}">Relatório</a>
+                    <a class="nav-link {% if request.path == '/reports/' %}active{% endif %}" href="{% url 'reports' %}">Relatório</a>
                 </li>
 
+                <!-- Consultas -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConsulta" role="button" data-bs-toggle="dropdown">
+                        Consultar
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'client-list' %}">Clientes</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contract-list' %}">Contratos</a></li>
+                        <li><a class="dropdown-item" href="{% url 'payment-list' %}">Pagamentos</a></li>
+                        <li><a class="dropdown-item" href="{% url 'employee-list' %}">Funcionários</a></li>
+                        <li><a class="dropdown-item" href="{% url 'visit-list' %}">Visitas</a></li>
+                        <li><a class="dropdown-item" href="{% url 'maintenance-list' %}">Manutenções</a></li>
+                        <li><a class="dropdown-item" href="{% url 'owner-list' %}">Proprietários</a></li>
+                    </ul>
+                </li>
+
+                <!-- Cadastro -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCadastro" role="button" data-bs-toggle="dropdown">
                         Cadastrar
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'client-create' %}">Cliente</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'immobile-create' %}">Imóvel</a>
-                        </li>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'client-create' %}">Cliente</a></li>
+                        <li><a class="dropdown-item" href="{% url 'immobile-create' %}">Imóvel</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contract-create' %}">Contrato</a></li>
+                        <li><a class="dropdown-item" href="{% url 'payment-create' %}">Pagamento</a></li>
+                        <li><a class="dropdown-item" href="{% url 'employee-create' %}">Funcionário</a></li>
+                        <li><a class="dropdown-item" href="{% url 'visit-create' %}">Visita</a></li>
+                        <li><a class="dropdown-item" href="{% url 'maintenance-create' %}">Manutenção</a></li>
+                        <li><a class="dropdown-item" href="{% url 'owner-create' %}">Proprietário</a></li>
                     </ul>
-                </li> 
+                </li>
+
             </ul>
 
-            <a class="navbar-brand" href="#">Vezetiv</a> 
-
+            <span class="navbar-text text-light">
+                {{ request.user.username }}
+            </span>
+                <a class="navbar-brand" href="#">Vezetiv</a> 
         </div>
-
     </div>
-
 </nav>
