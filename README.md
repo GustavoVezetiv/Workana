@@ -140,4 +140,4 @@ Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais de
 ## 👨‍💻 Autor
 
 **Gustavo Vezetiv**  
-[LinkedIn](https://www.linkedin.com/in/gustavovezetiv) | [GitHub](https://github.com/GustavoVezetiv)
+[LinkedIn]([https://www.linkedin.com/in/gustavovezetiv](https://www.linkedin.com/in/gustavo-vezetiv-08416126b/)) | [GitHub](https://github.com/GustavoVezetiv)
