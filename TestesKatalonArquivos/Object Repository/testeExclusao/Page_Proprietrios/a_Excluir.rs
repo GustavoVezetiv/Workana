@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Excluir</name>
+   <tag></tag>
+   <elementGuidId>485915e6-02b9-42ef-aaf7-88d8da6766b4</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>tr:nth-of-type(4) > td:nth-of-type(5) > a.btn.btn-sm.btn-danger</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(//a[contains(text(),'Excluir')])[4]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=row[name=&quot;wefgsrgs gustavovezetiv8@gmail.coms 65998017426 sgesegsegsgseg Editar Excluir&quot;i] >> internal:role=link >> nth=1</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>d20d411a-2edf-41b1-bd61-375e22e11f55</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/owners/delete/5/</value>
+      <webElementGuid>977f6623-b467-4e2c-8a63-0533a2fad8e7</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>btn btn-sm btn-danger</value>
+      <webElementGuid>0845f202-06fa-4d8e-b758-fa1322ca6556</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Excluir</value>
+      <webElementGuid>7c3f7b2f-c2d9-48bb-87a7-e4c9b09cec25</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[1]/div[@class=&quot;container&quot;]/div[@class=&quot;container mt-4&quot;]/table[@class=&quot;table table-bordered&quot;]/tbody[1]/tr[4]/td[5]/a[@class=&quot;btn btn-sm btn-danger&quot;]</value>
+      <webElementGuid>17397f24-6a24-4385-ba19-662b86040e9c</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:link</name>
+      <type>Main</type>
+      <value>(//a[contains(text(),'Excluir')])[4]</value>
+      <webElementGuid>d3c7a83d-86f9-4ec2-9744-a7da1bd09e24</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Editar'])[4]/following::a[1]</value>
+      <webElementGuid>9641be1f-0890-4acc-81ed-4f1e6ab4e031</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='sgesegsegsgseg'])[1]/following::a[2]</value>
+      <webElementGuid>f99360bb-bb48-41ef-a318-2618f24de412</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='a'])[1]/preceding::a[1]</value>
+      <webElementGuid>19024ee6-e321-4f53-9534-ab4a5f52e831</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='a@gmail.com'])[1]/preceding::a[1]</value>
+      <webElementGuid>4040c67a-8240-4886-bff7-a5c3a3268fe7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/owners/delete/5/')]</value>
+      <webElementGuid>10adaa33-b9e1-4269-896a-a4e93dfaa995</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//tr[4]/td[5]/a[2]</value>
+      <webElementGuid>49130aae-7f13-40a2-ab06-09ab55e5bccd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/owners/delete/5/' and (text() = 'Excluir' or . = 'Excluir')]</value>
+      <webElementGuid>729fd181-be32-4f51-9c71-efb5391ab0b8</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
