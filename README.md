@@ -28,6 +28,7 @@ Este projeto é um sistema web completo desenvolvido com Django, voltado para o 
 - Injeção de Dependência aplicada nas views
 - Pronto para análise com SonarCloud e build com Jenkins
 - Demais explicações estarão no Documento da aplicação 😁
+
 ---
 
 ## 🚀 Tecnologias utilizadas
@@ -36,7 +37,7 @@ Este projeto é um sistema web completo desenvolvido com Django, voltado para o 
 - [Django](https://www.djangoproject.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
 - HTML5 + CSS3
-- SQLite (padrão Django) 
+- SQLite (padrão Django) ou PostgreSQL
 
 ---
 
@@ -59,6 +60,84 @@ python manage.py migrate
 
 # Rode o servidor local
 python manage.py runserver
+```
 
+---
 
+## ✅ Testes automatizados
 
+- Foram desenvolvidos **5 testes de interface com Katalon Studio** cobrindo os principais fluxos:
+  - Cadastro de cliente
+  - Cadastro de imóvel
+  - Registro de locação
+  - Exclusão de locação
+  - Geração de relatório
+
+Os arquivos estão disponíveis na pasta `/tests-katalon`.
+
+---
+
+## 🔧 Build automatizado com Jenkins
+
+Um pipeline de build automatizado foi criado utilizando o Jenkins, com os seguintes estágios:
+
+- Checkout do código
+- Criação de ambiente virtual
+- Instalação de dependências
+
+---
+
+## 📊 Análise de código com SonarCloud
+
+O projeto está integrado com o [SonarCloud](https://sonarcloud.io/) para verificação de:
+
+- Cobertura de testes
+- Vulnerabilidades
+- Bugs
+- Code smells
+- Dívida técnica
+
+Arquivo de configuração: [`sonar-project.properties`](https://github.com/GustavoVezetiv/Workana/blob/main/SONARRELATORIO.pdf)
+
+---
+
+## 💡 Arquitetura do projeto
+
+```bash
+myapp/
+├── models.py          # Modelos principais
+├── forms.py           # Formulários Django
+├── views.py           # Lógicas das páginas
+├── urls.py            # Rotas do app
+├── templates/         # HTMLs (com Bootstrap)
+├── static/            # Arquivos estáticos
+└── repositories/      # Repositórios injetáveis (Injeção de Dependência)
+```
+
+---
+
+## 🧠 Padrões aplicados
+
+- Injeção de Dependência nas views para facilitar testes e manutenção
+- Separação de responsabilidades entre views, formulários e lógica de acesso a dados (repositórios)
+- Views baseadas em função (FBV)
+
+---
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas!  
+Sinta-se à vontade para abrir **issues**, **pull requests** ou sugerir melhorias.
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## 👨‍💻 Autor
+
+**Gustavo Vezetiv**  
+[LinkedIn]([https://www.linkedin.com/in/gustavovezetiv](https://www.linkedin.com/in/gustavo-vezetiv-08416126b/)) | [GitHub](https://github.com/GustavoVezetiv)
